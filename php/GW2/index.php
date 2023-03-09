@@ -1,6 +1,10 @@
 <?php
-include "./db.inc.php";
+include "./Db.class.php";
+include "./Product.class.php";
 $db = new Db();
-var_dump($db);
+$product = new Product($db);
+
+$total = $product->getProducts();
+var_dump($total);
 exit;
 echo 'test';
