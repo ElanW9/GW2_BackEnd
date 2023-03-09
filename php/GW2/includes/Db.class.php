@@ -34,4 +34,17 @@ class Db
         $stmt->execute($filters);
         return $stmt->fetchAll($fetch);
     }
+
+    private function buildWhere($filters)
+    {
+        $where = '';
+        if (count($filters)) {
+            $where = [];
+            foreach ($filters as $key => $value) {
+                $where[] = "$key = :$key";
+            }
+            $where = 'WHERE ' . implode(' AND ', $where);
+        }
+        return $where;
+    }
 }
